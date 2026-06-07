@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>医师职业转型分析工具 | Career Transition Analyzer</title>
+    <meta name="description" content="为中国内地住院医师提供的职业转型分析工具，包含薪资对比、职业匹配度分析和市场行情数据">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Noto+Sans+SC:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- Ambient Background -->
+    <div class="ambient-bg">
+        <div class="ambient-orb orb-1"></div>
+        <div class="ambient-orb orb-2"></div>
+        <div class="ambient-orb orb-3"></div>
+    </div>
+
+    <!-- Header -->
+    <header class="header">
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">
+                    <div class="logo-icon">
+                        <svg viewBox="0 0 32 32" fill="none">
+                            <path d="M16 2L20 10L28 12L22 18L24 26L16 22L8 26L10 18L4 12L12 10L16 2Z" fill="url(#logoGrad)" />
+                            <defs>
+                                <linearGradient id="logoGrad" x1="4" y1="2" x2="28" y2="26">
+                                    <stop stop-color="#818cf8"/>
+                                    <stop offset="1" stop-color="#c084fc"/>
+                                </linearGradient>
+                            </defs>
+                        </svg>
+                    </div>
+                    <h1>医师职业转型分析</h1>
+                </div>
+                <p class="header-subtitle">基于2024-2025年国内市场数据 · 为住院医师量身定制</p>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="main">
+        <div class="container">
+
+            <!-- User Profile Section -->
+            <section class="section profile-section" id="profile">
+                <div class="section-header">
+                    <span class="section-tag">第一步</span>
+                    <h2>个人偏好设置</h2>
+                    <p>调整以下参数，系统将根据您的偏好智能推荐最适合的职业方向</p>
+                </div>
+                <div class="preferences-grid">
+                    <div class="pref-card">
+                        <div class="pref-icon">🤫</div>
+                        <h3>社交需求偏好</h3>
+                        <p>您期望的日常人际交互程度</p>
+                        <div class="slider-container">
+                            <input type="range" id="socialPref" min="0" max="100" value="20" class="slider">
+                            <div class="slider-labels">
+                                <span>极少社交</span>
+                                <span>中等</span>
+                                <span>频繁社交</span>
+                            </div>
+                        </div>
+                        <div class="pref-value" id="socialValue">20%</div>
+                    </div>
+                    <div class="pref-card">
+                        <div class="pref-icon">💰</div>
+                        <h3>薪资期望</h3>
+                        <p>您期望的年薪范围（万元）</p>
+                        <div class="slider-container">
+                            <input type="range" id="salaryPref" min="10" max="100" value="30" class="slider">
+                            <div class="slider-labels">
+                                <span>10万</span>
+                                <span>55万</span>
+                                <span>100万</span>
+                            </div>
+                        </div>
+                        <div class="pref-value" id="salaryValue">30万</div>
+                    </div>
+                    <div class="pref-card">
+                        <div class="pref-icon">🎯</div>
+                        <h3>入行难度接受度</h3>
+                        <p>您愿意投入多少时间和精力转型</p>
+                        <div class="slider-container">
+                            <input type="range" id="difficultyPref" min="0" max="100" value="50" class="slider">
+                            <div class="slider-labels">
+                                <span>容易上手</span>
+                                <span>中等</span>
+                                <span>愿意深造</span>
+                            </div>
+                        </div>
+                        <div class="pref-value" id="difficultyValue">50%</div>
+                    </div>
+                    <div class="pref-card">
+                        <div class="pref-icon">⚖️</div>
+                        <h3>工作生活平衡</h3>
+                        <p>您对作息规律和加班的容忍度</p>
+                        <div class="slider-container">
+                            <input type="range" id="wlbPref" min="0" max="100" value="80" class="slider">
+                            <div class="slider-labels">
+                                <span>可以很忙</span>
+                                <span>中等</span>
+                                <span>极度规律</span>
+                            </div>
+                        </div>
+                        <div class="pref-value" id="wlbValue">80%</div>
+                    </div>
+                    <div class="pref-card">
+                        <div class="pref-icon">🧑‍🤝‍🧑</div>
+                        <h3>人群素质要求</h3>
+                        <p>您期望接触的工作对象素质水平</p>
+                        <div class="slider-container">
+                            <input type="range" id="qualityPref" min="0" max="100" value="80" class="slider">
+                            <div class="slider-labels">
+                                <span>不介意</span>
+                                <span>中等</span>
+                                <span>高素质群体</span>
+                            </div>
+                        </div>
+                        <div class="pref-value" id="qualityValue">80%</div>
+                    </div>
+                    <div class="pref-card">
+                        <div class="pref-icon">📍</div>
+                        <h3>出差意愿</h3>
+                        <p>您对工作出差频率的接受程度</p>
+                        <div class="slider-container">
+                            <input type="range" id="travelPref" min="0" max="100" value="20" class="slider">
+                            <div class="slider-labels">
+                                <span>完全不想</span>
+                                <span>偶尔可以</span>
+                                <span>愿意频繁出差</span>
+                            </div>
+                        </div>
+                        <div class="pref-value" id="travelValue">20%</div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Career Matching Results -->
+            <section class="section results-section" id="results">
+                <div class="section-header">
+                    <span class="section-tag">智能推荐</span>
+                    <h2>职业匹配度排行</h2>
+                    <p>根据您的偏好设置，以下是最适合您的职业方向（实时更新）</p>
+                </div>
+                <div class="career-cards" id="careerCards">
+                    <!-- Dynamically generated -->
+                </div>
+            </section>
+
+            <!-- Salary Comparison -->
+            <section class="section chart-section" id="salary">
+                <div class="section-header">
+                    <span class="section-tag">数据分析</span>
+                    <h2>薪资水平对比</h2>
+                    <p>各职业方向的薪资范围可视化（单位：万元/年）</p>
+                </div>
+                <div class="chart-wrapper">
+                    <div class="salary-chart" id="salaryChart">
+                        <!-- Dynamically generated -->
+                    </div>
+                </div>
+            </section>
+
+            <!-- Detailed Comparison Table -->
+            <section class="section table-section" id="comparison">
+                <div class="section-header">
+                    <span class="section-tag">深度对比</span>
+                    <h2>多维度详细对比</h2>
+                    <p>点击表头可排序，全方位评估各职业方向的优劣</p>
+                </div>
+                <div class="table-wrapper">
+                    <table class="comparison-table" id="comparisonTable">
+                        <thead>
+                            <tr>
+                                <th data-sort="name">职业方向 <span class="sort-icon">↕</span></th>
+                                <th data-sort="social">社交程度 <span class="sort-icon">↕</span></th>
+                                <th data-sort="salary">薪资中位 <span class="sort-icon">↕</span></th>
+                                <th data-sort="difficulty">入行难度 <span class="sort-icon">↕</span></th>
+                                <th data-sort="wlb">WLB <span class="sort-icon">↕</span></th>
+                                <th data-sort="quality">人群素质 <span class="sort-icon">↕</span></th>
+                                <th data-sort="travel">出差频率 <span class="sort-icon">↕</span></th>
+                                <th data-sort="growth">成长潜力 <span class="sort-icon">↕</span></th>
+                            </tr>
+                        </thead>
+                        <tbody id="tableBody">
+                            <!-- Dynamically generated -->
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+
+            <!-- Radar Chart Section -->
+            <section class="section radar-section" id="radar">
+                <div class="section-header">
+                    <span class="section-tag">雷达图</span>
+                    <h2>职业特征雷达分析</h2>
+                    <p>选择职业方向查看其各维度特征分布</p>
+                </div>
+                <div class="radar-controls">
+                    <select id="radarSelect1" class="radar-select">
+                        <!-- Dynamically generated -->
+                    </select>
+                    <span class="vs-badge">VS</span>
+                    <select id="radarSelect2" class="radar-select">
+                        <!-- Dynamically generated -->
+                    </select>
+                </div>
+                <div class="radar-wrapper">
+                    <canvas id="radarCanvas" width="500" height="500"></canvas>
+                </div>
+                <div class="radar-legend" id="radarLegend"></div>
+            </section>
+
+            <!-- Career Details Modal Content -->
+            <section class="section details-section" id="details">
+                <div class="section-header">
+                    <span class="section-tag">深度解析</span>
+                    <h2>职业方向详细信息</h2>
+                    <p>点击下方卡片展开详细的职业分析和转型路径建议</p>
+                </div>
+                <div class="details-accordion" id="detailsAccordion">
+                    <!-- Dynamically generated -->
+                </div>
+            </section>
+
+            <!-- Action Plan -->
+            <section class="section action-section" id="action">
+                <div class="section-header">
+                    <span class="section-tag">行动指南</span>
+                    <h2>转型路线图</h2>
+                    <p>无论选择哪个方向，以下通用建议值得参考</p>
+                </div>
+                <div class="timeline">
+                    <div class="timeline-item">
+                        <div class="timeline-marker">1</div>
+                        <div class="timeline-content">
+                            <h3>探索期（1-2个月）</h3>
+                            <ul>
+                                <li>通过知乎、小红书、脉脉等平台寻找已转行的同行</li>
+                                <li>进行至少3-5次"信息面谈"（Informational Interview），了解真实工作内容</li>
+                                <li>评估自身技能短板，制定学习计划</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-marker">2</div>
+                        <div class="timeline-content">
+                            <h3>准备期（2-6个月）</h3>
+                            <ul>
+                                <li>根据目标方向补充关键技能（如编程、数据分析、学术写作等）</li>
+                                <li>考取相关证书或完成在线课程</li>
+                                <li>尝试兼职或项目制工作积累经验</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-marker">3</div>
+                        <div class="timeline-content">
+                            <h3>求职期（1-3个月）</h3>
+                            <ul>
+                                <li>更新简历，突出医学背景与目标岗位的连接点</li>
+                                <li>通过猎头、LinkedIn、丁香人才等渠道投递</li>
+                                <li>⚠️ <strong>保留医师执照</strong>——无论是否转行，这是你的职业护城河</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-marker">4</div>
+                        <div class="timeline-content">
+                            <h3>过渡期（3-6个月）</h3>
+                            <ul>
+                                <li>入职后快速适应新的工作文化和节奏</li>
+                                <li>建立新行业的人脉网络</li>
+                                <li>持续评估自身满意度，必要时调整方向</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <p>本分析工具基于2024-2025年公开市场数据编制，仅供参考。薪资数据因城市、企业规模、个人经验而异。</p>
+            <p class="footer-note">建议在做出重大职业决策前，进行深入的个人调研和专业咨询。</p>
+        </div>
+    </footer>
+
+    <script src="app.js"></script>
+</body>
+</html>
